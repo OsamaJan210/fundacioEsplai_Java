@@ -54,7 +54,7 @@ public class TextAnalysis {
 
     public static void testTextAnalysis(String frase){
         System.out.println(TextAnalysis(frase));
-        if (!Test.assertEquals("18,4,anita,8,true", String.valueOf(TextAnalysis("Anita lava la tina")))) {
+        if (!Test.assertEquals("18,4,anita,8,true", TextAnalysis("Anita lava la tina"))) {
             System.err.println("Test Fail: Text Analysis failed");
             return;
         }
