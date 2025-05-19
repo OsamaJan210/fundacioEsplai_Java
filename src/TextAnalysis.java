@@ -1,6 +1,10 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class TextAnalysis {
 
-    public static void TextAnalysis(String line) {
+    public static String TextAnalysis(String line) {
         int No_of_characters = line.length();
         int No_of_words = 0;
         int No_of_vowels = 0;
@@ -31,5 +35,31 @@ public class TextAnalysis {
         System.out.println("Longest word: '" + longestWord + "'");
         System.out.println("Vowels: " + No_of_vowels);
         System.out.println("Is Palindrome " + Palindrome.esPalindromo(text2));
+
+        System.out.println("Bonus:");
+        export(line);
+        return No_of_characters+","+No_of_words+","+longestWord+","+No_of_vowels+","+
+                String.valueOf(Palindrome.esPalindromo(text2));
+
     }
+    private static void export(String text) {
+        String filePath="D://text.txt";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write(text);
+            System.out.println("File Saved to  " + filePath);
+        } catch (IOException e) {
+            System.err.println("An error occurred while writing to the file: " + e.getMessage());
+        }
+    }
+
+    public static void testTextAnalysis(String frase){
+        System.out.println(TextAnalysis(frase));
+        if (!Test.assertEquals("18,4,anita,8,true", String.valueOf(TextAnalysis("Anita lava la tina")))) {
+            System.err.println("Test Fail: Text Analysis failed");
+            return;
+        }
+        System.out.println("Test Pass: Text Analysis passed");
+
+    }
+
 }
